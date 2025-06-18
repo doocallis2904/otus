@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: otus-deployment
+    namespace: otus
+    labels:
+        app: otus
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: otus
+    template:
+        metadata:
+            labels:
+                app: otus
+        spec:
+            containers:
+                - name: otus-container
+                  image: doocallis2904/otus:v1
+                  ports:
+                      - containerPort: 8000
+                  resources:
+                      requests:
+                          cpu: "100m"
+                          memory: "128Mi"
+                      limits:
+                          cpu: "500m"
+                          memory: "512Mi"
